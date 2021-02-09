@@ -1,5 +1,5 @@
 <template>
-  <div class="backdrop">
+  <div class="backdrop" @click="closeModal">
     <!-- on defini comme nom de class sale si la props theme === sale -->
     <div class="modal" :class="{ sale: theme === 'sale' }">
       <h1>{{ header }}</h1>
@@ -11,6 +11,12 @@
 <script>
 export default {
   props: ["header", "text", "theme"],
+  methods: {
+    closeModal() {
+      // pour que le composant emete un event
+      this.$emit("close");
+    },
+  },
 };
 </script>
 <style >
