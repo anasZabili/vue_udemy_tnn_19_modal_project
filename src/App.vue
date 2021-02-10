@@ -1,7 +1,7 @@
 <template>
   <h1>{{ title }}</h1>
   <p>Welcome...</p>
-  <div v-if="showModal">
+  <teleport to="#modals" v-if="showModal">
     <!-- close est notre event customisé -->
     <Modal theme="sale" @close="toggleModal">
       <template v-slot:links>
@@ -11,8 +11,15 @@
       <h1>Super prix sur les aspirateurs</h1>
       <p>Acheter des aspi mtn</p>
     </Modal>
-  </div>
+  </teleport>
+  <teleport to="#modals" v-if="showModal2">
+    <Modal @close="toggleModal2">
+      <h1>Super prix sur les aspirateurs</h1>
+      <p>Acheter des aspi mtn</p>
+    </Modal>
+  </teleport>
   <button @click.alt="toggleModal">Open Modal (alt)</button>
+  <button @click="toggleModal2">Open Modal2</button>
 </template>
 
 <script>
@@ -26,21 +33,24 @@ export default {
   data() {
     return {
       title: "My first vue app",
-      header: "Sign up for the Giveawey !",
-      text: "Grab your item",
       showModal: false,
+      showModal2: false,
     };
   },
   methods: {
     toggleModal() {
       this.showModal = !this.showModal;
     },
+    toggleModal2() {
+      this.showModal2 = !this.showModal2;
+    },
   },
 };
 </script>
 
 <style>
-#app {
+#app,
+#modals {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
