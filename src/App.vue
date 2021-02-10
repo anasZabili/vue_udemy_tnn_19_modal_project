@@ -3,9 +3,16 @@
   <p>Welcome...</p>
   <div v-if="showModal">
     <!-- close est notre event customisé -->
-    <Modal :header="header" :text="text" theme="sale" @close="toggleModal" />
+    <Modal theme="sale" @close="toggleModal">
+      <template v-slot:links>
+        <a href="#">sign up now</a>
+        <a href="#">more info</a>
+      </template>
+      <h1>Super prix sur les aspirateurs</h1>
+      <p>Acheter des aspi mtn</p>
+    </Modal>
   </div>
-  <button @click="toggleModal">Open Modal</button>
+  <button @click.alt="toggleModal">Open Modal (alt)</button>
 </template>
 
 <script>
